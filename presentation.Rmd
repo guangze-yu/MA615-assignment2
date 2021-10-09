@@ -11,17 +11,46 @@ source("visualation_function.R")
 source("wrangling_code.R")
 ```
 
-# Introduction 
+# I. Introduction 
 
 
 From the Gapminder website (https://www.gapminder.org/data/), we find that there are lots of world development indicators like total population and so on. 
 
 In order to compare newborn child condition of China and US, we pick two relevant indicators: Life expectancy and children mortality. Life expectancy is defined by the average number of years a newborn child would live if the current mortality pattern were stay at the same. Chilren mortality is defined by death of children under five years of age per 1000 live births. Life expectancy is based on children mortality. However, we focus more on the difference between countries: China and US. 
 
+# II. Procedure
 
+After downloading datasets which contains two indictors: Life expectancy and children mortality, we try to wrangling two dataframes for a "tidy" dataset. The definition of "tidy" dataset is: 1. Each variable forms a column. 2. Each observation forms a row. 3. Each type of observational unit forms a table. So, we try to combine two wide datasets into one long datasets which contain four columns: country, year, life and child. As a "tidy" data, we statisfy all rules and replace the empty with NA. 
+
+Country is defined by variety countries. There is total `r length(unique(full_df$country))` countries. 
+
+Years is defined by variety years. There is total `r length(unique(full_df$Year))` years, which is from 1799 to 2099. 
+
+Life is defined by life expectancy, which is the average number of years a newborn child would live if the current mortality pattern were stay at the same.
+
+Child is defined by chilren mortality, which is death of children under five years of age per 1000 live births.
+
+The second step is to visulize our results. Because we want to compare the difference between China and US, we filter the original dataset with condition: country == "China" & "United States". The treated dataset will contains four columns country,year,life expectancy and mortality. 
+
+The third step is to calculate the change rate. We use the formula: the change rate = (value from the second year - value from the first year)/value from the first year. The change rate can easily show the pattern through time.
+
+# III. Result and Disscusion
+
+The fourth step is to visualize our result. Two plots are shown below. The first one is the change rate of chilren mortality, while the second one is the change rate of life expectancy. 
 
 
 ```{r,echo = FALSE,warning=FALSE,message=FALSE,results = FALSE}
 ch_us_vis_fun(full_df)
 ```
+
+
+From the children mortality plot, the blue line represent US and red line represent China. If the change rate is larger than 0, this means that more children dead under 5 age compared to last year. This probably cause by the illness or the hungry or even social problems. If the change rate is smaller than 0, this means that less children dead under 5 age compared to last year. This probably cause by the invention of new medicine. Compared with US and China, there is big change peak around 1904 to 1944 for US, while there is a big peak change around 1944 to 1984. This probably explained by the social events of two countries. 
+
+Also, from life expectancy plot, the blue line represent US and red line represent China. If the change rate is larger than 0, this means that the esimated children life is longer compared to last year. This probably cause by the invention of new medicine. If the change rate is smaller than 0, this means that the esimated children life is shorter compared to last year. This probably cause by the illness or the hungry or even social problems. So, this life expectancy should be opposite as the children. Because better living condition will decrease the probability of death and also increase the estimated age. 
+
+# IV. Conclusion
+
+There is no obvious relationship between China and US. The change peak doesn't occur at the same time, which means that the living condition or the social environment is different for two countries.
+
+
 

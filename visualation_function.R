@@ -11,8 +11,10 @@ ch_us_vis_fun <- function(df){
   vis_df <- full_df %>% 
     filter(country =="China" |country =="United States") %>% # filter country 
     as.data.frame() %>% # Make as dataframe
-    mutate(child_diff = (Child - lag(Child))/Child*100, # use the second row minus the previous row to calculate the difference 
-           life_diff = (Life- lag(Life))/Life*100) # also for life
+    group_by(country)%>%
+    arrange(Year) %>%
+    mutate(child_diff = (Child-lag(Child))/Child*100, # use the second row minus the previous row to calculate the difference 
+           life_diff = (Life-lag(Life))/Life*100) # also for life
   
   ####### The comparsion plot of child 
   p1 <- ggplot(data=vis_df) +
