@@ -1,0 +1,27 @@
+---
+title: "Presentation of China vs US"
+author: "Guangze Yu"
+date: "10/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE,echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+source("visualation_function.R")
+source("wrangling_code.R")
+```
+
+# Introduction 
+
+
+From the Gapminder website (https://www.gapminder.org/data/), we find that there are lots of world development indicators like total population and so on. 
+
+In order to compare newborn child condition of China and US, we pick two relevant indicators: Life expectancy and children mortality. Life expectancy is defined by the average number of years a newborn child would live if the current mortality pattern were stay at the same. Chilren mortality is defined by death of children under five years of age per 1000 live births. Life expectancy is based on children mortality. However, we focus more on the difference between countries: China and US. 
+
+
+
+
+```{r,echo = FALSE,warning=FALSE,message=FALSE,results = FALSE}
+ch_us_vis_fun(full_df)
+```
+
