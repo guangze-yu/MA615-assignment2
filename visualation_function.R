@@ -41,3 +41,29 @@ ch_us_vis_fun <- function(df){
          x ="Years seperated by 20 years", y = "The change rate (Unit:%)")
   return(list(p1,p2))
 }
+
+ch_us_vis_fun("p1")
+ch_us_vis_fun("p2")
+  
+####### New visualization function
+  ####### The comparsion plot of child 
+  p1_new<-ggplot(vis_df,aes(x = Year,y = child_diff,group=country))+
+    geom_point()+
+    geom_path()+
+    xlab("Years seperated by 20 years")+ylab("The change rate (Unit:%)")+
+    title("The Comparsion of US and China's Death of children of 5 years of age \n per 1000 live births")+
+    theme(axis.title.x=element_text(size=15,family="myFont",color="black"))
+    
+  
+  ####### The comparsion plot of life
+  p2_new<-ggplot(vis_df,aes(x = Year,y = life_diff,group=country))+
+    geom_point()+
+    geom_path()+
+  
+    xlab("Years seperated by 20 years")+ylab("The change rate (Unit:%)")+
+    title("The Comparsion of US and China's the average number of years a newborn \n child would live if current mortality pattern were to stay the same")
+
+  ch_us_vis_fun("p1_new")
+  ch_us_vis_fun("p2_new")
+ 
+  
